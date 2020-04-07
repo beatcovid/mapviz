@@ -126,7 +126,7 @@ Transfer.prototype.draw = function (context) {
       context.fill()
       context.stroke()
 
-      if (this.launchAnim == true && this.lt <= 1.0 && this.noAnim == false) {
+      if (this.launchAnim == false && this.lt <= 1.0 && this.noAnim == false) {
         if (this.lt == 0) {
           this.animCountry = true
         }
@@ -169,10 +169,13 @@ Transfer.prototype.draw = function (context) {
       context.beginPath()
       context.arc(tmpX, this.y2, 2.3 + 8 * this.lt, 0, 2 * Math.PI, false)
       context.stroke()
-      context.restore()
+
+      context.beginPath()
+      context.arc(tmpX, this.y2, 2.3 + 8 * this.lt, 0, 2 * Math.PI, false)
+      context.stroke()
 
       this.lt += this.ltInc
-      if (this.lt > 1.0) {
+      if (this.lt > 3.0) {
         this.active = false
       }
     }

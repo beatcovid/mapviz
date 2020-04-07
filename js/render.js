@@ -6,8 +6,8 @@
 
 // Australia centroid as "home base"
 
-jQuery(document).ready(function () {
-  ;(function () {
+jQuery(document).ready(function() {
+  ;(function() {
     //////////
     //Settings
     //////////
@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
     /////////
 
     //based on map that cuts off the poles from original example at
-    var latLonToXY = function (lat, lon, scale) {
+    var latLonToXY = function(lat, lon, scale) {
       var x, y
       return {
         y: lat * (-2.6938 * scale) + 227.066 * scale,
@@ -44,7 +44,7 @@ jQuery(document).ready(function () {
 
     //determines map scale
     //may need additional work for very wide but not very tall screens
-    var setMapScale = function () {
+    var setMapScale = function() {
       var fullWidth = window.innerWidth
       var fullHeight = window.innerHeight
 
@@ -60,7 +60,7 @@ jQuery(document).ready(function () {
     var mapBackImgLoaded = false
     var mapBackCanvas
     var mapBackContext
-    var drawMapBack = function () {
+    var drawMapBack = function() {
       //setup canvas
       mapBackCanvas = $("#mapBackLayer")[0]
       mapBackContext = mapBackCanvas.getContext("2d")
@@ -78,7 +78,7 @@ jQuery(document).ready(function () {
       if (mapBackImgLoaded == false) {
         mapBackImgLoaded = true
 
-        mapBackImg.onload = function () {
+        mapBackImg.onload = function() {
           console.log("back image loaded")
           mapBackContext.drawImage(
             mapBackImg,
@@ -102,7 +102,7 @@ jQuery(document).ready(function () {
 
     //draw that map
     var r
-    var drawMap = function () {
+    var drawMap = function() {
       setMapScale()
       drawMapBack()
 
@@ -133,7 +133,7 @@ jQuery(document).ready(function () {
         target,
         Math.round(mapOrigWidth * mapScale),
         Math.round(mapOrigHeight * mapScale),
-        function () {
+        function() {
           r = this
           //console.log(((mapBackOrigHeight * mapBackScale) - (mapOrigHeight * mapScale) - dataCanvasLeft));
           r.rect(
@@ -179,7 +179,7 @@ jQuery(document).ready(function () {
     var areciboXY
     var dataTransfers = [] //animated transfer dots/objects
 
-    var initDataCanvas = function () {
+    var initDataCanvas = function() {
       //set where data flows to and from:
       homeBaseXY = latLonToXY(homeBase.lat, homeBase.lon, mapScale)
 
@@ -213,7 +213,7 @@ jQuery(document).ready(function () {
     var dataSourcesTrack = []
 
     //set the stage and plot observatories and other SETI data sources
-    var initDataSources = function () {
+    var initDataSources = function() {
       var i, source, tmpX, tmpY, tmpLocXY
       //position canvas
       $("#dataSourcesLayer").css(
@@ -247,51 +247,8 @@ jQuery(document).ready(function () {
     initDataSources()
     window.addEventListener("resize", initDataSources, false)
 
-    //track each second counts in its own array value, then average them
-    var outCounts = [0]
-    var inCounts = [0]
-    var countSec = 0 //planning on 5 second average
-
-    var updatePerSec = function () {
-      var i
-      var total = 0
-      var inAvg = 0
-      var outAvg = 0
-
-      if (winActive == true) {
-        if (outCounts.length > 0) {
-          total = 0
-          for (i = 0; i < outCounts.length; i++) {
-            total += outCounts[i]
-          }
-          outAvg = Math.round((total / outCounts.length) * 10) / 10 + "/sec"
-          $("#key-rate-out").html(outAvg)
-        }
-
-        if (inCounts.length > 0) {
-          total = 0
-          for (i = 0; i < inCounts.length; i++) {
-            total += inCounts[i]
-          }
-          inAvg = Math.round((total / inCounts.length) * 10) / 10 + "/sec"
-          $("#key-rate-in").html(inAvg)
-        }
-
-        countSec++
-        if (countSec > 4) {
-          countSec = 0
-        }
-        outCounts[countSec] = 0
-        inCounts[countSec] = 0
-      }
-    }
-
-    setInterval(function () {
-      updatePerSec()
-    }, 1000)
-
     //Show homeBase label
-    var plotHomeBase = function () {
+    var plotHomeBase = function() {
       //text shadow
       dataSourcesContext.font = "12px Helvetica"
       dataSourcesContext.fillStyle = "rgba(0, 54, 74, 1.0)"
@@ -310,7 +267,7 @@ jQuery(document).ready(function () {
     }
 
     // //offset everything on the right side of the map to fly in/out from the other side for 'actual' shortest distance
-    var offsetX = function (x, lon) {
+    var offsetX = function(x, lon) {
       if (lon > homeBase.opp) {
         x -= mapBackOrigWidth * mapBackScale
       }
@@ -320,57 +277,33 @@ jQuery(document).ready(function () {
 
     var winActive = true
 
-    setTimeout(function () {
+    setTimeout(function() {
       var loc
-      loc = inlocs[Math.floor(Math.random() * inlocs.length)]
-      if (loc.la != 0 && loc.lo != 0) {
+      let plot = Math.floor(Math.random() * inlocs.length)
+      iloc = outlocs[plot]
+      oloc = inlocs[plot]
+      if (iloc.la != 0 && iloc.lo != 0) {
         var trans, locXY
-        locXY = latLonToXY(loc.la, loc.lo, mapScale)
-        locXY.x = offsetX(locXY.x, loc.lo)
+        locXY = latLonToXY(iloc.la, iloc.lo, mapScale)
+        locXY.x = offsetX(locXY.x, iloc.lo)
+        olocXY = latLonToXY(oloc.la, oloc.lo, mapScale)
+        olocXY.x = offsetX(olocXY.x, oloc.lo)
         trans = new Transfer(
           locXY.x + dataCanvasLeft,
           locXY.y,
-          homeBaseXY.x + dataCanvasLeft,
-          homeBaseXY.y,
-          //   0 + dataCanvasLeft,
-          //   0,
+          olocXY.x + dataCanvasLeft,
+          olocXY.y,
           colors["workUnitIn"],
-          loc.cc,
-          true,
+          iloc.cc,
+          false,
           false,
           mapBackOrigWidth * mapBackScale,
         )
         dataTransfers.push(trans)
       }
-      inCounts[countSec] += 1 //tally transfer
+      // inCounts[countSec] += 1 //tally transfer
       setTimeout(arguments.callee, Math.round(100 / inlocs.length) * 1)
     }, Math.round(1000 / inlocs.length) * 1)
-
-    setTimeout(function () {
-      var loc
-      loc = outlocs[Math.floor(Math.random() * outlocs.length)]
-      if (loc.la != 0 && loc.lo != 0) {
-        var trans, locXY
-        locXY = latLonToXY(loc.la, loc.lo, mapScale)
-        locXY.x = offsetX(locXY.x, loc.lo)
-        trans = new Transfer(
-          homeBaseXY.x + dataCanvasLeft,
-          homeBaseXY.y,
-          //   0 + dataCanvasLeft,
-          //   10,
-          locXY.x + dataCanvasLeft,
-          locXY.y,
-          colors["workUnitOut"],
-          loc.cc,
-          false,
-          false,
-          mapBackOrigWidth * mapBackScale,
-        )
-        dataTransfers.push(trans)
-      }
-      outCounts[countSec] += 1 //tally transfer
-      setTimeout(arguments.callee, Math.round(100 / outlocs.length) * 1)
-    }, (Math.round(1000 / outlocs.length) * 1) / 2)
 
     /////////
     //animate
