@@ -138,6 +138,8 @@ Transfer.prototype.draw = function (context) {
         }
 
         context.beginPath()
+        context.strokeStyle = "white"
+        context.fillStyle = "white"
         context.arc(tmpX, this.y1, 2.3 + 8 * this.lt, 0, 2 * Math.PI, false)
         context.stroke()
 
