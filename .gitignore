@@ -24,3 +24,4 @@ yarn-error.log*
 .envrc
 .env.*
 NOTES.md
+original/
