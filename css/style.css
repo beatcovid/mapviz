@@ -1,0 +1,178 @@
+html, body {
+	width:  100%; /* needed for resize functions */
+	height: 100%; /* needed for resize functions */
+	margin: 0px; /* needed for resize functions */
+	background: #000;
+	color: #FFF;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+}
+
+a, a:visited, a:hover {
+    color: #5ed3ff;
+}
+
+div.small {
+   font-size: 10px;
+   }
+
+#mapLayer {
+	z-index: 1;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+
+#mapBackLayer {
+	z-index: 0;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#dataLayer {
+	z-index: 10;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#dataSourcesLayer {
+	z-index: 20;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+#logo {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	z-index: 30;
+}
+
+#logo img {
+	margin-right: 40px;
+	float: left;
+}
+
+#factoids {
+	position: absolute;
+	bottom: 0px;
+	left: 290px;
+	/*min-height: 65px;*/
+	font-size: 20px;
+	padding-right: 20px;
+	color: #5ed3ff;
+	z-index: 40;
+	margin: 0;
+}
+
+#factoids {
+	list-style-type: none;
+    padding: 0px 20px 15px 0px;
+    margin: 0px;
+}
+
+#factoids li {
+	margin: 0;
+}
+
+#factoids img {
+	position: absolute;
+	bottom: 20px;
+	left: -270px;
+	border: #5ed3ff solid 1px;
+}
+
+#key {
+	position: absolute;
+	top: 0px;
+	right: 40px;
+	z-index: 20;
+}
+
+.key-col {
+	display: inline-block;
+	white-space:nowrap;
+	margin-left: 20px;
+	margin-top: 40px;
+	text-align: left;
+}
+
+.key-dot {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	vertical-align: middle;
+}
+
+.key-dot-out {
+	background-color: #ffcc00;
+}
+
+.key-dot-in {
+	background-color: #5ed3ff;
+}
+
+.key-dot-screensaver {
+	background-color: #32ff00;
+}
+
+.key-dot-data {
+	background-color: #FFF;
+}
+
+.key-rate {
+	padding-left: 23px;	
+}
+
+.key-label {
+	display: inline-block;
+	vertical-align: middle;
+	white-space:nowrap;
+	font-weight: bold;
+}
+
+.key-label-out {
+	color: #ffcc00;
+}
+
+.key-label-in {
+	color: #5ed3ff;
+}
+
+.key-label-screensaver {
+	color: #32ff00;
+}
+
+.key-label-data {
+	color: #FFF;
+}
+
+#paused-back {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.6);
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 100;
+	text-align: center;
+}
+
+#paused {
+	display: inline-block;
+	padding: 20px;
+	color: #006f98;
+	font-size: 20px;
+	border: #006f98 solid 1px;
+	background-color: #000;
+	margin-top: 250px;
+}
