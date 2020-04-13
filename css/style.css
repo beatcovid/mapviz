@@ -1,8 +1,7 @@
-html,
 body {
-  width: 100%; /* needed for resize functions */
-  height: 100%; /* needed for resize functions */
-  margin: 0px; /* needed for resize functions */
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   background: #000;
   color: #fff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -66,129 +65,9 @@ div.small {
   float: left;
 }
 
-#factoids {
-  position: absolute;
-  bottom: 0px;
-  left: 290px;
-  /*min-height: 65px;*/
-  font-size: 20px;
-  padding-right: 20px;
-  color: #5ed3ff;
-  z-index: 40;
-  margin: 0;
-}
-
-#factoids {
-  list-style-type: none;
-  padding: 0px 20px 15px 0px;
-  margin: 0px;
-}
-
-#factoids li {
-  margin: 0;
-}
-
-#factoids img {
-  position: absolute;
-  bottom: 20px;
-  left: -270px;
-  border: #5ed3ff solid 1px;
-}
-
-#key {
-  position: absolute;
-  top: 0px;
-  right: 40px;
-  z-index: 20;
-}
-
-.key-col {
-  display: inline-block;
-  white-space: nowrap;
-  margin-left: 20px;
-  margin-top: 40px;
-  text-align: left;
-}
-
-.key-dot {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 10px;
-  vertical-align: middle;
-}
-
-.key-dot-out {
-  background-color: #ffcc00;
-}
-
-.key-dot-in {
-  background-color: #5ed3ff;
-}
-
-.key-dot-screensaver {
-  background-color: #32ff00;
-}
-
-.key-dot-data {
-  background-color: #fff;
-}
-
-.key-rate {
-  padding-left: 23px;
-}
-
-.key-label {
-  display: inline-block;
-  vertical-align: middle;
-  white-space: nowrap;
-  font-weight: bold;
-}
-
-.key-label-out {
-  color: #ffcc00;
-}
-
-.key-label-in {
-  color: #5ed3ff;
-}
-
-.key-label-screensaver {
-  color: #32ff00;
-}
-
-.key-label-data {
-  color: #fff;
-}
-
-#paused-back {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 100;
-  text-align: center;
-}
-
-#paused {
-  display: inline-block;
-  padding: 20px;
-  color: #006f98;
-  font-size: 20px;
-  border: #006f98 solid 1px;
-  background-color: #000;
-  margin-top: 250px;
-}
-
-body {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-}
-
 #credit {
+  color: white;
+
   position: absolute;
   bottom: 5px;
   right: 15px;
