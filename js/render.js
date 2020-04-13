@@ -288,12 +288,13 @@ jQuery(document).ready(function() {
         locXY.x = offsetX(locXY.x, iloc.lo)
         olocXY = latLonToXY(oloc.la, oloc.lo, mapScale)
         olocXY.x = offsetX(olocXY.x, oloc.lo)
+        let color = iloc.ci > 0 ? "#FF5733" : "#DAF7A6"
         trans = new Transfer(
           locXY.x + dataCanvasLeft,
           locXY.y,
           olocXY.x + dataCanvasLeft,
           olocXY.y,
-          colors["workUnitIn"],
+          color,
           iloc.cc,
           false,
           false,
