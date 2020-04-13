@@ -95,7 +95,7 @@ function Transfer(
   this.mapWidth = mapWidth //offset animation by half a map
 }
 
-Transfer.prototype.draw = function (context) {
+Transfer.prototype.draw = function(context) {
   var tmpX
   if (this.active == true) {
     if (this.mode == "launch") {
@@ -150,7 +150,7 @@ Transfer.prototype.draw = function (context) {
 
       //move for next frame
       this.t += this.tInc
-      if (this.t > 1.0) {
+      if (this.t > splashSourceSize) {
         if (this.launchAnim == false && this.noAnim == false) {
           this.mode = "hit"
         } else {
@@ -177,7 +177,7 @@ Transfer.prototype.draw = function (context) {
       context.stroke()
 
       this.lt += this.ltInc
-      if (this.lt > 3.0) {
+      if (this.lt > splashDestSize) {
         this.active = false
       }
     }

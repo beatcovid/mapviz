@@ -2,7 +2,6 @@ const homeBase = {
   name: "Australia",
   lat: -24.25,
   lon: 133.416667,
-  //   opp: 123.659024,
   //   opp: 57.741, //opposite side of Earth where transfer direction will change
 }
 
@@ -12,9 +11,10 @@ const colors = {
   workUnitOut: "green",
   workUnitIn: "pink",
   appOut: "#000000",
+  positiveTest: "#FF5733",
+  negativeTest: "#DAF7A6",
 }
 
-//SETI Data Sources
 const dataSources = [
   {
     name: "Australia",
@@ -23,5 +23,10 @@ const dataSources = [
   },
 ]
 
-var outlocstime = 30000
-var inlocstime = 30000
+const outlocstime = 30000
+const inlocstime = 30000
+
+const splashSourceSize = 1.0
+const splashDestSize = 3.0
+
+const speedFactor = 1

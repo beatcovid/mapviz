@@ -288,7 +288,7 @@ jQuery(document).ready(function() {
         locXY.x = offsetX(locXY.x, iloc.lo)
         olocXY = latLonToXY(oloc.la, oloc.lo, mapScale)
         olocXY.x = offsetX(olocXY.x, oloc.lo)
-        let color = iloc.ci > 0 ? "#FF5733" : "#DAF7A6"
+        let color = iloc.ci > 0 ? colors.positiveTest : colors.negativeTest
         trans = new Transfer(
           locXY.x + dataCanvasLeft,
           locXY.y,
@@ -303,8 +303,11 @@ jQuery(document).ready(function() {
         dataTransfers.push(trans)
       }
       // inCounts[countSec] += 1 //tally transfer
-      setTimeout(arguments.callee, Math.round(100 / inlocs.length) * 1)
-    }, Math.round(1000 / inlocs.length) * 1)
+      setTimeout(
+        arguments.callee,
+        Math.round(100 / inlocs.length) * speedFactor,
+      )
+    }, Math.round(1000 / inlocs.length) * speedFactor)
 
     /////////
     //animate
